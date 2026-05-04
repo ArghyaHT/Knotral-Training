@@ -44,6 +44,42 @@ export const AuthProvider = ({ children }) => {
     getUser();
   }, []);
 
+  useEffect(() => {
+    if (!user) return;
+
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    let timer;
+
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const expiryTime = payload.exp * 1000;
+
+      const timeout = expiryTime - Date.now();
+
+      console.log("Session timeout in:", timeout, "ms");
+
+      if (timeout <= 0) {
+        logout();
+        return;
+      }
+
+      timer = setTimeout(() => {
+        console.log("Session expired → auto logout");
+        logout();
+      }, timeout);
+
+    } catch (err) {
+      console.error("Token decode error:", err);
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+
+  }, [user]);
+
   const logout = async () => {
     try {
       await fetch(`${API}/user/logout-user`, {
@@ -52,6 +88,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       localStorage.removeItem("token");
+      localStorage.removeItem("user"); // 🔥 add this
       setUser(null);
       router.replace("/");
 
