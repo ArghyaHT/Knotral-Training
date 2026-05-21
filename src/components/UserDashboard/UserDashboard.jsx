@@ -106,20 +106,21 @@ const UserDashboard = () => {
   const uniqueCategories = [...new Set(upcomingCategories)];
 
   const registeredWebinars = webinars.map((w) => ({
-  webinarId: w.webinar?._id,
-  date: w.date, // 👈 IMPORTANT (must exist in your data)
+  webinarId: w.webinar?._id || w.webinar,
+  date: w.webinarDate,
 }));
 
 const recommendedWebinars = allWebinars
   .filter((webinar) => {
-    const matchCategory = webinar.category?.some((cat) =>
-      uniqueCategories.includes(cat)
-    );
+    const matchCategory =
+      uniqueCategories.length === 0 ||
+      webinar.category?.some((cat) =>
+        uniqueCategories.includes(cat)
+      );
 
-    const isFuture = moment(webinar.date).isAfter(moment());
+    const isFuture = moment(webinar.date).endOf("day").isAfter(moment());
     const isActive = !webinar.isStopped;
 
-    // ✅ FIX: check BOTH id + date
     const notRegistered = !registeredWebinars.some(
       (r) =>
         r.webinarId === webinar._id &&
@@ -131,7 +132,7 @@ const recommendedWebinars = allWebinars
   .sort((a, b) => new Date(a.date) - new Date(b.date))
   .slice(0, 4);
 
-  console.log("Recommended webinars:", recommendedWebinars);
+console.log("Recommended webinars:", recommendedWebinars);
 
   const certifiedWebinars = allWebinars
     .filter(
@@ -561,12 +562,12 @@ const recommendedWebinars = allWebinars
                       </div>
 
                       <div className={styles.upcomingActions}>
-                        <button
+                        {/* <button
                           className="btn btnprimary btnsm"
                         // onClick={() => addToGoogleCalendar(item)}
                         >
                           Add to Calendar
-                        </button>
+                        </button> */}
 
                         <button
                           className="btn btnsecondary btnsm"

@@ -48,37 +48,37 @@ export default function MyPastSessions() {
 
     }, [user]);
 
-     const totalCompletedSessions = webinars.filter((item) =>
+    const totalCompletedSessions = webinars.filter((item) =>
         moment(item.webinarDate).isBefore(moment())
-      );
+    );
 
 
-      const getPastSessionsForCompleted = (completedSessions) => {
+    const getPastSessionsForCompleted = (completedSessions) => {
         return completedSessions.flatMap((session) => {
-      
-          const webinarMonth = moment(session.webinarDate).month();
-          const webinarYear = moment(session.webinarDate).year();
-      
-          const pastSessions = session.webinar?.pastSessions || [];
-      
-          return pastSessions
-            .filter((past) => {
-              const pastMonth = moment(past.date).month();
-              const pastYear = moment(past.date).year();
-      
-              return pastMonth === webinarMonth && pastYear === webinarYear;
-            })
-            .map((past) => ({
-              ...past,
-              webinarTitle: session.webinar?.title,   
-              webinarTime: session?.webinar.duration,
-              webinarOrganiser: session.webinar?.organisedBy,
-            }));
-      
+
+            const webinarMonth = moment(session.webinarDate).month();
+            const webinarYear = moment(session.webinarDate).year();
+
+            const pastSessions = session.webinar?.pastSessions || [];
+
+            return pastSessions
+                .filter((past) => {
+                    const pastMonth = moment(past.date).month();
+                    const pastYear = moment(past.date).year();
+
+                    return pastMonth === webinarMonth && pastYear === webinarYear;
+                })
+                .map((past) => ({
+                    ...past,
+                    webinarTitle: session.webinar?.title,
+                    webinarTime: session?.webinar.duration,
+                    webinarOrganiser: session.webinar?.organisedBy,
+                }));
+
         });
-      };
-      
-        const matchingPastSessions = getPastSessionsForCompleted(totalCompletedSessions);
+    };
+
+    const matchingPastSessions = getPastSessionsForCompleted(totalCompletedSessions);
 
     return (
         <div className={styles.page}>
@@ -127,8 +127,10 @@ export default function MyPastSessions() {
                         </div>
                     ))
                 ) : (
-                    <div className={styles.empty}>
-                        No past sessions attended yet.
+                    <div className={styles.emptyWrapper}>
+                        <div className={styles.empty}>
+                            No past sessions attended yet.
+                        </div>
                     </div>
                 )}
             </div>
