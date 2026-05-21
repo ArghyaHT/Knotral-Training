@@ -52,17 +52,6 @@ const RegisterComp = ({ webinar, utms }) => {
   }, [showLoginModal]);
 
 
-  useEffect(() => {
-    if (showRegisterModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [showRegisterModal]);
-
 
   useEffect(() => {
     const fetchCertificate = async () => {
