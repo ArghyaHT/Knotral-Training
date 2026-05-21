@@ -182,6 +182,12 @@
     color: var(--text-secondary);
 }
 
+.originalPrice {
+  text-decoration: line-through; /* strikes through original price */
+  color: #999;
+  margin-right: 0.5rem;
+}
+
 /* === Responsive Adjustments for Filterbar & Webinar Cards === */
 
 /* Tablets <=1024px */

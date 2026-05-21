@@ -1,0 +1,335 @@
+ .formpage {
+     padding: 10px 0;
+ }
+ 
+
+ .formcontainer {
+     max-width: 640px;
+     margin: 0 auto;
+ }
+
+ .formcard {
+     background: var(--white);
+     border-radius: 16px;
+     padding: 40px;
+     /* box-shadow: var(--shadow-card); */
+ }
+
+ .formcard h2 {
+     font-size: 28px;
+     margin-bottom: 8px;
+     text-align: center;
+ }
+
+ .formcard .subheading {
+     font-size: 12px;
+     text-align: center;
+     color: var(--text-secondary);
+     margin-bottom: 32px;
+ }
+
+ .formcard .subtitle {
+     text-align: center;
+     color: var(--text-secondary);
+     margin-bottom: 32px;
+ }
+
+ .formgroup {
+     margin-bottom: 20px;
+ }
+
+ .formgroup label {
+     display: block;
+     font-size: 14px;
+     font-weight: 500;
+     margin-bottom: 8px;
+ }
+
+ .formgroup label .required {
+     color: var(--live-red);
+ }
+
+ .formgroup input,
+ .formgroup select,
+ .formgroup textarea {
+     width: 100%;
+     border: 1px solid var(--border-light);
+     border-radius: 8px;
+     padding: 12px 16px;
+     font-size: 14px;
+     font-family: inherit;
+ }
+
+ .formgroup input:focus,
+ .formgroup select:focus,
+ .formgroup textarea:focus {
+     outline: none;
+     border-color: var(--secondary-blue);
+     box-shadow: 0 0 0 3px rgba(43, 90, 138, 0.15);
+ }
+
+ .formgroup textarea {
+     min-height: 120px;
+     resize: vertical;
+ }
+
+ .formgroup .hint {
+     font-size: 12px;
+     color: var(--text-muted);
+     margin-top: 6px;
+     font-style: italic;
+
+ }
+
+ .formrow {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 16px;
+ }
+
+ .checkboxgroup {
+     display: flex;
+     align-items: flex-start;
+     gap: 12px;
+     margin-bottom: 12px;
+ }
+
+ .checkboxgroup input[type="checkbox"] {
+     width: 18px;
+     height: 18px;
+     margin-top: 2px;
+     flex-shrink: 0;
+ }
+
+ .checkboxgroup label {
+     font-size: 14px;
+     color: var(--text-secondary);
+     font-weight: 400;
+ }
+
+ .formdivider {
+     height: 1px;
+     background: var(--border-light);
+     margin: 32px 0;
+ }
+
+ .formsectiontitle {
+     font-size: 16px;
+     font-weight: 600;
+     margin-bottom: 16px;
+     color: var(--primary-navy);
+ }
+
+
+ .modalOverlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background: rgba(0, 0, 0, 0.5);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     z-index: 999;
+ }
+
+ .modalBox {
+     background: var(--white);
+     padding: 28px;
+     border-radius: 12px;
+     text-align: center;
+     width: 90%;
+     max-width: 400px;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+ }
+
+ .modalButton {
+     background: var(--cta-orange);
+     color: var(--white);
+     border: none;
+     padding: 10px 20px;
+     margin-top: 12px;
+     border-radius: 8px;
+     cursor: pointer;
+ }
+
+.agreement {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 16px;
+        margin-bottom: 20px;
+
+}
+
+.agreementLabel {
+    display: flex;
+    flex-direction: row;      /* always row */
+    align-items: center;  /* key fix */
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.agreementLabel input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;           /* prevents checkbox shrinking */
+}
+
+
+.agreementLabel span {
+    line-height: 1.4;
+    text-align: left;
+    max-width: 500px;         /* prevents super-wide text */
+}
+
+ @media (max-width: 1024px) {
+     .formpage {
+         padding: 48px 0;
+     }
+
+     .formcard {
+         padding: 32px;
+     }
+
+     .formcard h2 {
+         font-size: 26px;
+     }
+
+     .formcard .subheading {
+         font-size: 12px;
+     }
+ }
+
+ @media (max-width: 768px) {
+     .formpage {
+         padding: 40px 0;
+     }
+
+     .formcard {
+         padding: 28px;
+     }
+
+     .formcard h2 {
+         font-size: 24px;
+     }
+
+     .formcard .subheading {
+         font-size: 12px;
+     }
+
+     .formrow {
+         grid-template-columns: 1fr;
+         gap: 1px;
+     }
+
+     .formgroup input,
+     .formgroup select,
+     .formgroup textarea {
+         padding: 10px 12px;
+         font-size: 13px;
+     }
+
+     .formgroup .hint {
+         font-size: 11px;
+     }
+ }
+
+ @media (max-width: 576px) {
+     .formpage {
+         padding: 32px 0;
+     }
+
+     .formcard {
+         padding: 24px;
+         border-radius: 12px;
+     }
+
+     .formcard h2 {
+         font-size: 22px;
+     }
+
+     .formcard .subheading {
+         font-size: 11px;
+     }
+
+     .formgroup input,
+     .formgroup select,
+     .formgroup textarea {
+         padding: 8px 10px;
+         font-size: 12px;
+     }
+
+     .checkboxgroup label {
+         font-size: 12px;
+     }
+
+     .formsectiontitle {
+         font-size: 15px;
+     }
+
+     .formdivider {
+         margin: 24px 0;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .formpage {
+         padding: 24px 0;
+     }
+
+     .formcard {
+         padding: 20px;
+     }
+
+     .formcard h2 {
+         font-size: 20px;
+     }
+
+     .formcard .subheading {
+         font-size: 10px;
+     }
+.agreement {
+        font-size: 11px;
+    }
+
+    .agreementLabel span {
+        max-width: 220px;
+    }
+
+    .agreementLabel input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+    }
+ }
+
+ @media (max-width: 360px) {
+     .formpage {
+         padding: 16px 0;
+     }
+
+     .formcard {
+         padding: 16px;
+     }
+
+     .formcard h2 {
+         font-size: 18px;
+     }
+
+     .formgroup input,
+     .formgroup select,
+     .formgroup textarea {
+         padding: 6px 8px;
+         font-size: 12px;
+     }
+
+     .checkboxgroup label {
+         font-size: 11px;
+     }
+
+     .formdivider {
+         margin: 16px 0;
+     }
+ }

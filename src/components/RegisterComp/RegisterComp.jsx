@@ -150,17 +150,32 @@ const RegisterComp = ({ webinar, utms }) => {
     }
   };
 
-  useEffect(() => {
-    if (activeVideo) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+  // useEffect(() => {
+  //   if (activeVideo) {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "";
+  //   }
 
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [activeVideo]);
+  //   return () => {
+  //     document.body.style.overflow = "";
+  //   };
+  // }, [activeVideo]);
+
+  useEffect(() => {
+  if (showModal || activeVideo) {
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  } else {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  }
+
+  return () => {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+  };
+}, [showModal, activeVideo]);
 
   const isJanuaryWebinar = moment(webinar?.date).month() === 0; // January = 0
 
@@ -252,7 +267,68 @@ const RegisterComp = ({ webinar, utms }) => {
                 {webinar?.features.map((item) => (
                   <li key={item._id}>{item.feature}</li>
                 ))}
-              </ul>
+              </ul> */}
+              {webinar.organisedBy === "We Skoolhouse" ? (
+                <section className={styles.learningSection}>
+                  <div className={styles.cardGrid}>
+                    <div className={styles.card}>
+                      <div className={`${styles.imagePlaceholder} ${styles.bgTan}`}>
+                        <img src="/weShoolHouse1.jpg" alt="Reggio Emilia History" />
+                      </div>
+                      <div className={styles.cardContent}>
+                        <h3>History of the Reggio Emilia Approach</h3>
+                        <p>Explore the origins and evolution of this groundbreaking philosophy.</p>
+                      </div>
+                    </div>
+
+                    <div className={styles.card}>
+                      <div className={styles.imagePlaceholder}>
+                        <img src="/weShoolHouse2.jpg" alt="Child portrait" />
+                      </div>
+                      <div className={styles.cardContent}>
+                        <h3>The Image of the Child</h3>
+                        <p>Reframe how you view children as capable, curious, and full of potential.</p>
+                      </div>
+                    </div>
+
+                    <div className={styles.card}>
+                      <div className={styles.imagePlaceholder}>
+                        <img src="/weShoolHouse3.jpg" alt="Classroom environment" />
+                      </div>
+                      <div className={styles.cardContent}>
+                        <h3>The Environment as the Third Teacher</h3>
+                        <p>Learn how thoughtful, responsive spaces can shape learning and behavior.</p>
+                      </div>
+                    </div>
+
+                    <div className={styles.card}>
+                      <div className={`${styles.imagePlaceholder} ${styles.bgDark}`}>
+                        <img src="/weShoolHouse4.jpg" alt="Documentation and Advocacy" />
+                      </div>
+                      <div className={styles.cardContent}>
+                        <h3>Documentation</h3>
+                        <p>Discover powerful tools to observe, reflect, and make learning visible.</p>
+                      </div>
+                    </div>
+
+                    <div className={styles.card}>
+                      <div className={styles.imagePlaceholder}>
+                        <img src="/weShoolHouse5.jpg" alt="Teachers collaborating" />
+                      </div>
+                      <div className={styles.cardContent}>
+                        <h3>Community and Collaboration</h3>
+                        <p>Understand how relationships among children, families, and educators form the heart of this approach.</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              ) : (
+                <ul>
+                  {webinar.features.map((item) => (
+                    <li key={item._id}>{item.feature}</li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             {isJanuaryWebinar ? (
@@ -325,10 +401,10 @@ const RegisterComp = ({ webinar, utms }) => {
                   >
                     <img
                       src="/attend5.png"
-                      alt="Resellers"
+                      alt="Partners"
                       className={styles.tabicon}
                     />
-                    For Resellers
+                    For Partners
                   </div>
                 </div>
 

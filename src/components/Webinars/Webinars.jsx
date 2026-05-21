@@ -134,18 +134,18 @@ const WebinarsList = ({ webinars, pagination, filters }) => {
                         {webinars.map((item) => (
                             <React.Fragment key={item._id}>
                                 <div className={styles.webinarcard}>
-                                     <Link
-                                href={item.link || "/"}
-                                target={item.link ? "_blank" : "_self"}
-                                rel={item.link ? "noopener noreferrer" : undefined}
-                                className={styles.productlink}
-                            >
-                                    <div className={styles.splogo}>
-                                        <img
-                                            src={item.logo.url}
-                                            alt={item.title || "Webinar Logo"}
-                                        />
-                                    </div>
+                                    <Link
+                                        href={item.link || "/"}
+                                        target={item.link ? "_blank" : "_self"}
+                                        rel={item.link ? "noopener noreferrer" : undefined}
+                                        className={styles.productlink}
+                                    >
+                                        <div className={styles.splogo}>
+                                            <img
+                                                src={item.logo.url}
+                                                alt={item.title || "Webinar Logo"}
+                                            />
+                                        </div>
 
                                     </Link>
 
@@ -181,10 +181,24 @@ const WebinarsList = ({ webinars, pagination, filters }) => {
                                     </div>
 
                                     <div className={styles.actions}>
-                                        <div
+                                        {/* <div
                                             className={`${styles.price} ${item.isFree ? styles.free : ""}`}
                                         >
                                             {item.isFree ? "FREE" : `₹${item.price}`}
+
+                                        </div> */}
+
+                                        <div className={`${styles.regprice} ${item.isFree ? styles.free : ""}`}>
+                                            {item.isFree ? (
+                                                "FREE"
+                                            ) : item.organisedBy === "We Skoolhouse" ? (
+                                                <>
+                                                    {/* <span className={styles.originalPrice}>₹4774</span>{" "} */}
+                                                    <span className={styles.discountedPrice}>₹{item.price}</span>
+                                                </>
+                                            ) : (
+                                                `₹${item.price}`
+                                            )}
                                         </div>
                                         <Link
                                             href={`/${item.slug}`}
@@ -256,7 +270,7 @@ const WebinarsList = ({ webinars, pagination, filters }) => {
                         })()}
 
                     </div>
-                    
+
                 </div>
             </section>
         </>

@@ -8,60 +8,62 @@ const Hero = ({ webinars }) => {
     const [searchText, setSearchText] = useState("");
 
     // Filter webinars by search text (case-insensitive)
-const filteredWebinars = useMemo(() => {
-    if (!searchText) return webinars;
+    const filteredWebinars = useMemo(() => {
+        if (!searchText) return webinars;
 
-    const search = searchText.toLowerCase();
+        const search = searchText.toLowerCase();
 
-    return webinars.filter(w => {
-        const titleMatch =
-            w.title?.toLowerCase().includes(search);
+        return webinars.filter(w => {
+            const titleMatch =
+                w.title?.toLowerCase().includes(search);
 
-        const providerMatch =
-            w.provider?.toLowerCase().includes(search);
+            const providerMatch =
+                w.provider?.toLowerCase().includes(search);
 
-        const categoryMatch =
-            Array.isArray(w.category) &&
-            w.category.some(cat =>
-                cat.toLowerCase().includes(search)
-            );
+            const categoryMatch =
+                Array.isArray(w.category) &&
+                w.category.some(cat =>
+                    cat.toLowerCase().includes(search)
+                );
 
-        return titleMatch || providerMatch || categoryMatch;
-    });
-}, [searchText, webinars]);
+            return titleMatch || providerMatch || categoryMatch;
+        });
+    }, [searchText, webinars]);
 
     // Generate popular tags dynamically from filtered webinars
-const popularTags = useMemo(() => {
-    // Flatten category arrays into single list
-    const allCategories = filteredWebinars
-        .flatMap(w => Array.isArray(w.category) ? w.category : [])
-        .filter(Boolean);
+    const popularTags = useMemo(() => {
+        // Flatten category arrays into single list
+        const allCategories = filteredWebinars
+            .flatMap(w => Array.isArray(w.category) ? w.category : [])
+            .filter(Boolean);
 
-    // Count usage of each category
-    const tagCount = {};
-    allCategories.forEach(cat => {
-        tagCount[cat] = (tagCount[cat] || 0) + 1;
-    });
+        // Count usage of each category
+        const tagCount = {};
+        allCategories.forEach(cat => {
+            tagCount[cat] = (tagCount[cat] || 0) + 1;
+        });
 
-    // Sort by most used
-    const sortedTags = Object.keys(tagCount).sort(
-        (a, b) => tagCount[b] - tagCount[a]
-    );
+        // Sort by most used
+        const sortedTags = Object.keys(tagCount).sort(
+            (a, b) => tagCount[b] - tagCount[a]
+        );
 
-    return sortedTags.slice(0, 4);
-}, [filteredWebinars]);
+        return sortedTags.slice(0, 4);
+    }, [filteredWebinars]);
 
     return (
         <section className={styles.hero}>
 
             <div className="container">
+                <div className={styles.heroeyebrow}>Global Education Hub</div>
+
                 <h1>
-                    Professional Development
+                    Discover, Experience and Partner with 
                     <br />
-                    from Global Education Leaders
+                    Innovative <span className={styles.span}>Education Solutions</span>
                 </h1>
 
-                <p>Live webinars • Certifications • Classroom-ready strategies</p>
+                <p>Live webinars • <span className={styles.ptext}>Classroom-ready strategies</span></p>
 
                 <div className={styles.searchBar}>
                     <input

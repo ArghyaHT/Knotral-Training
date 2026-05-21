@@ -107,7 +107,7 @@ export default async function Home() {
       <LiveSessions webinars={webinars} />
       <Category />
       {/* <FeaturedPrograms webinars={certifiedWebinars} /> */}
-      {/* <PastSessions webinars={pastSessionsWebinars} /> */}
+      <PastSessions webinars={pastSessionsWebinars} />
       <LogoStrip />
       <Testimonials />
       <CtaSection />

@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import RegisterComp from "@/components/RegisterComp/RegisterComp";
+import RegisterComp2 from "@/components/RegisterComp2/RegisterComp2";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import Script from "next/script";
@@ -106,7 +107,12 @@ export default async function Register({ params }) {
           )}
         </div>
       </section>
-      <RegisterComp webinar={webinar} utms={utm} />
+      {/* <RegisterComp webinar={webinar} utms={utm} /> */}
+      {webinar?.theme === "theme2" ? (
+        <RegisterComp2 webinar={webinar} utms={utm} />
+      ) : (
+        <RegisterComp webinar={webinar} utms={utm} />
+      )}
       <Footer />
     </>
   );

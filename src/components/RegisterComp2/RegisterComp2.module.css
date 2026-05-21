@@ -274,7 +274,6 @@
      color: var(--accent-teal);
      font-weight: 600;
      margin-bottom: 4px;
-     text-transform: uppercase;
  }
 
  .regbonus p {
@@ -367,15 +366,11 @@
      gap: 2rem;
  }
 
-.pastrecordingsgrid1 {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(300px, 1fr));
-    gap: 2rem;
-    max-height: 500px;
-
-    overflow-y: auto;   /* 🔥 THIS enables vertical scroll */
-    padding-right: 8px; /* optional: prevents scrollbar overlap */
-}
+ .pastrecordingsgrid1 {
+     display: grid;
+     grid-template-columns: repeat(1, minmax(300px, 1fr));
+     gap: 2rem;
+ }
 
  .recordingcard {
      background: var(--white);
@@ -815,113 +810,6 @@
  }
 
 
- .learningSection {
-  margin-top: 2rem;
-}
-
-.cardGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
-
-.card {
-  border-radius: 8px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.cardContent h3 {
-  font-size: 18px;         /* adjust as needed */
-  white-space: nowrap;      /* keep text on one line */
-  overflow: hidden;         /* hide overflowing text */
-  text-overflow: ellipsis;  /* show ... at the end */
-}
-
-.cardContent p {
-  font-size: 14px;         /* adjust as needed */
-}
-
-
-.imagePlaceholder {
-  width: 100%;
-  height: 150px; /* same size for all placeholders */
-  background: #f5f5f5;
-  position: relative;
-  overflow: hidden;
-}
-
-.imagePlaceholder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* ensures image fills the placeholder */
-  display: block;
-}
-
-
-
-.bgTan { background: #f0e6d2; }
-.bgDark { background: #333; }
-
-.cardContent { padding: 1rem; }
-
-
-.originalPrice {
-  text-decoration: line-through; /* strikes through original price */
-  color: #999;
-  margin-right: 0.5rem;
-}
-
-.discountedPrice {
-  font-weight: bold;
-}
-
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.65);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  z-index: 1000;
-}
-
-.modal {
-  position: relative;
-  width: 900px;
-  max-width: 95%;
-  height: 90vh;
-
-  background: #fff;
-  border-radius: 12px;
-
-  overflow-y: auto;
-
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-}
-
-.closeBtn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-
-  font-size: 26px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-
-  color: #333;
-}
-
-.closeBtn:hover {
-  color: #000;
-}
 
  /* RESPONSIVE */
  @media (max-width: 1024px) {
@@ -1031,17 +919,6 @@
      .whyattendgrid {
          grid-template-columns: repeat(2, 1fr);
      }
-       .modal {
-    width: 90%;
-    height: 88vh;
-    padding: 18px;
-  }
-
-  .closeBtn {
-    font-size: 24px;
-    top: 10px;
-    right: 14px;
-  }
  }
 
  @media (max-width: 768px) {
@@ -1186,26 +1063,6 @@
      .whyattendgrid {
          grid-template-columns: 1fr;
      }
-
-      .modalOverlay {
-    align-items: flex-start;
-    padding: 20px 10px;
-  }
-
-  .modal {
-    width: 100%;
-    height: auto;
-    max-height: 92vh;
-
-    border-radius: 10px;
-    padding: 16px;
-  }
-
-  .closeBtn {
-    font-size: 22px;
-    top: 10px;
-    right: 12px;
-  }
  }
 
  /* Small Phones <=468px */
@@ -1323,24 +1180,6 @@
      .whytitle {
          font-size: 1.2rem;
      }
-
-     .modalOverlay {
-    padding: 10px;
-  }
-
-  .modal {
-    width: 100%;
-    height: 95vh;
-    border-radius: 8px;
-
-    padding: 14px;
-  }
-
-  .closeBtn {
-    font-size: 20px;
-    top: 8px;
-    right: 10px;
-  }
  }
 
  /* Extra Small Phones <=360px */
@@ -1442,57 +1281,4 @@
      .whycard {
          padding: 1.5rem 1.2rem;
      }
-
-     .modal {
-    padding: 12px;
-  }
-
-  .closeBtn {
-    font-size: 18px;
-    top: 6px;
-    right: 8px;
-  }
-
-    .pastrecordingsgrid1 {
-    display: grid;
-    grid-template-columns: 1fr;   /* 🔥 force single column */
-    gap: 1rem;
-
-    width: 100%;                 /* 🔥 prevent shrink */
-    max-width: 100%;
-
-    max-height: 320px;           /* smaller for mobile */
-    overflow-y: auto;
-
-    padding-right: 4px;          /* avoid scrollbar overlap */
-  }
-
-  .recordingcard {
-    width: 100%;                 /* 🔥 important */
-    min-width: 0;                /* 🔥 prevents overflow */
-  }
-
-  .recordingthumbnail {
-    padding-bottom: 56.25%;      /* keep aspect ratio */
-  }
-
-  .recordinginfo {
-    padding: 0.8rem;
-  }
-
-  .recordingtitle {
-    font-size: 0.9rem;
-    line-height: 1.3;
-  }
-
-  .recordingdate {
-    font-size: 0.75rem;
-  }
-
-  .playoverlay {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-  }
-
  }
