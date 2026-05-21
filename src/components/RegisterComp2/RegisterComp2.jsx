@@ -4,14 +4,37 @@ import React, { useEffect, useState } from "react";
 import styles from "./RegisterComp2.module.css"
 import Link from "next/link";
 import moment from "moment";
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import LoginModal from "../LoginModal/LoginModal";
+import { IoCheckmark } from "react-icons/io5";
 
-const RegisterComp2 = ({ webinar }) => {
+const RegisterComp2 = ({ webinar, utms }) => {
 
     const [activeVideo, setActiveVideo] = useState(null);
 
     const [activeTab, setActiveTab] = useState("organizers-content");
 
     const [certificate, setCertificate] = useState(null);
+
+    const [showLoginModal, setShowLoginModal] = useState(false);
+
+    const [registeredWebinars, setRegisteredWebinars] = useState([]);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const { user } = useAuth();
+    const router = useRouter();
+
+    // Load Razorpay script
+    useEffect(() => {
+        if (!window.Razorpay) {
+            const script = document.createElement("script");
+            script.src = "https://checkout.razorpay.com/v1/checkout.js";
+            script.async = true;
+            document.body.appendChild(script);
+        }
+    }, []);
 
     useEffect(() => {
         const fetchCertificate = async () => {
@@ -36,6 +59,49 @@ const RegisterComp2 = ({ webinar }) => {
             fetchCertificate();
         }
     }, [webinar]);
+
+    useEffect(() => {
+        const fetchRegistered = async () => {
+            try {
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_BASE_URL}/user/get-user-registered-webinars`,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            email: user.email
+                        })
+                    }
+                );
+
+                const data = await res.json();
+                if (data.success) {
+                    setRegisteredWebinars(data.response);
+                }
+
+            } catch (error) {
+                console.error("Error fetching registered webinars:", error);
+            }
+        };
+
+        if (user?.email) {
+            fetchRegistered();
+        }
+
+    }, [user]);
+
+    const isRegistered = (registeredWebinars || []).some(r => {
+        const sameWebinar = String(r.webinarId) === String(webinar?._id);
+
+        const regDate = new Date(r.webinarDate).toISOString().split("T")[0];
+        const webinarDate = new Date(webinar?.date).toISOString().split("T")[0];
+
+        const sameDate = regDate === webinarDate;
+
+        return sameWebinar && sameDate;
+    });
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -71,17 +137,144 @@ const RegisterComp2 = ({ webinar }) => {
         }
     };
 
+    const cleanTime = webinar?.startTime?.replace(" IST", "") || "";
+
+    const handleRegister = async () => {
+        if (isSubmitting) return;
+        setIsSubmitting(true);
+
+        const payload = {
+            First_Name: user?.firstName || "",
+            Last_Name: user?.lastName || "",
+            Email: user?.email || "",
+            Mobile: `${user?.countryCode || ""}${user?.mobileNumber || ""}`,
+            Category: webinar?.organisedBy || "",
+            FORM_NAME: `${webinar?.organisedBy || ""} Landing page`,
+            Lead_Status: "No Contact Initiated",
+            Lead_Source: "Knotral Trainings",
+            Webinar_Date_TIme: webinar?.date ? moment(
+                `${moment(webinar.date).format("YYYY-MM-DD")} ${cleanTime}`,
+                "YYYY-MM-DD h:mm A"
+            ).format("YYYY-MM-DDTHH:mm:ssZ") : "",
+            webinarId: webinar?._id,
+
+            // UTM fields
+            utm_source: utms?.utm_source || "",
+            utm_medium: utms?.utm_medium || "",
+            utm_campaign: utms?.utm_campaign || "",
+        };
+
+        const submitRegistration = async (submitPayload) => {
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/zoho/register`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(submitPayload),
+                });
+
+                const data = await res.json();
+                return data.success;
+            } catch (error) {
+                console.error("Registration error:", error);
+                alert("❌ Something went wrong. Try again.");
+                return false;
+            }
+        };
+
+        if (webinar?.isFree) {
+            const success = await submitRegistration(payload);
+            if (success) {
+                router.push(`/thank-you/${webinar.slug}`);
+            } else {
+                alert("❌ Something went wrong. Try again.");
+            }
+            setIsSubmitting(false);
+            return;
+        }
+
+        try {
+            const orderRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/create-payment`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    amount: webinar?.price,
+                    currency: "INR",
+                    webinarId: webinar?._id,
+                    webinarTitle: webinar?.title,
+                    category: webinar?.organisedBy,
+                    userData: payload,
+                }),
+            });
+
+            const orderData = await orderRes.json();
+            if (!orderData?.orderId) {
+                setIsSubmitting(false);
+                alert("Order creation failed");
+                return;
+            }
+
+            const rzp = new window.Razorpay({
+                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+                amount: orderData.amount,
+                currency: orderData.currency,
+                name: webinar.title,
+                description: "Webinar Registration Payment",
+                order_id: orderData.orderId,
+                prefill: {
+                    name: `${user.firstName} ${user.lastName}`.trim(),
+                    email: user.email,
+                    contact: `${user.countryCode.replace("+", "")}${user.mobileNumber}`,
+                },
+                notes: {
+                    organisedBy: webinar.organisedBy,
+                    webinarName: webinar.title,
+                },
+                handler: async function (response) {
+                    const verifyRes = await fetch(
+                        `${process.env.NEXT_PUBLIC_API_BASE_URL}/payment/verify-payment`,
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(response),
+                        }
+                    );
+                    const verifyData = await verifyRes.json();
+
+                    if (verifyData.success) {
+                        const success = await submitRegistration(payload);
+                        if (success) {
+                            router.push(`/thank-you/${webinar.slug}`);
+                        }
+                    } else {
+                        alert("Payment verification failed. Try again.");
+                    }
+                },
+                theme: { color: "#3399cc" },
+            });
+
+            rzp.open();
+        } catch (error) {
+            console.error("Payment error:", error);
+            alert("Something went wrong during payment.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     useEffect(() => {
-        if (activeVideo) {
+        if (showLoginModal || activeVideo) {
+            document.documentElement.style.overflow = "hidden";
             document.body.style.overflow = "hidden";
         } else {
+            document.documentElement.style.overflow = "";
             document.body.style.overflow = "";
         }
 
         return () => {
+            document.documentElement.style.overflow = "";
             document.body.style.overflow = "";
         };
-    }, [activeVideo]);
+    }, [showLoginModal, activeVideo]);
 
     const isJanuaryWebinar = moment(webinar?.date).month() === 0; // January = 0
 
@@ -891,9 +1084,30 @@ const RegisterComp2 = ({ webinar }) => {
                                 {webinar.isFree ? "FREE" : `₹${webinar.price}`}
                             </div>
 
-                            <Link href={href} className={buttonClass}>
-                                {buttonText}
-                            </Link>
+                            {!user ? (
+                                <button
+                                    className={buttonClass}
+                                    onClick={() => setShowLoginModal(true)}
+                                >
+                                    {buttonText}
+                                </button>
+                            ) : isRegistered ? (
+                                <button
+                                    className={`${buttonClass} btndisabled`}
+                                    disabled
+                                >
+                                    <IoCheckmark style={{ marginRight: "6px" }} />
+                                    Registered
+                                </button>
+                            ) : (
+                                <button
+                                    className={buttonClass}
+                                    onClick={handleRegister}
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? "Registering..." : buttonText}
+                                </button>
+                            )}
 
                             {webinar.bonus?.title && (
                                 <div className={styles.regbonus}>
@@ -994,6 +1208,14 @@ const RegisterComp2 = ({ webinar }) => {
 
                 </div>
             </div>
+
+            <LoginModal
+                show={showLoginModal}
+                onClose={() => setShowLoginModal(false)}
+                onLoginSuccess={() => {
+                    setShowLoginModal(false);
+                }}
+            />
         </section>
     );
 };
