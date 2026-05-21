@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         <div className={styles.footerbottom}>
-          © 2025 Knotral. All rights reserved.
+          © 2026 Knotral. All rights reserved.
         </div>
       </div>
     </footer>

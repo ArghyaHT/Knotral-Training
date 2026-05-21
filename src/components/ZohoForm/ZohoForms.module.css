@@ -184,6 +184,12 @@
     max-width: 500px;         /* prevents super-wide text */
 }
 
+.readonlyInput{
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  color: #555;
+}
+
  @media (max-width: 1024px) {
      .formpage {
          padding: 48px 0;

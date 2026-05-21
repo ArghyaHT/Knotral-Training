@@ -1,0 +1,207 @@
+.page {
+  padding: 32px;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.header p {
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sessionCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.dateChip {
+  width: 60px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  background: #f3f4f6;
+}
+
+.day {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.month {
+  font-size: 13px;
+}
+
+.info {
+  flex: 1;
+}
+
+.info h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.meta {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.badges {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+}
+
+.timeChip {
+  font-size: 12px;
+  background: #eef2ff;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.empty {
+  padding: 40px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* ---------- 1024px (Small Laptop) ---------- */
+@media (max-width: 1024px) {
+
+  .page {
+    padding: 28px;
+  }
+
+  .sessionCard {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+}
+
+
+/* ---------- 768px (Tablet) ---------- */
+@media (max-width: 768px) {
+
+  .page {
+    padding: 22px;
+  }
+
+  .sessionCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dateChip {
+    width: 54px;
+  }
+
+  .info {
+    width: 100%;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+
+  .actions button {
+    flex: 1;
+  }
+
+}
+
+
+/* ---------- 480px (Mobile) ---------- */
+@media (max-width: 480px) {
+
+  .page {
+    padding: 18px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .sessionCard {
+    padding: 14px;
+  }
+
+  .info h3 {
+    font-size: 15px;
+  }
+
+  .meta {
+    font-size: 12px;
+  }
+
+  .badges {
+    flex-wrap: wrap;
+  }
+
+}
+
+
+/* ---------- 320px (Very Small Devices) ---------- */
+@media (max-width: 320px) {
+
+  .page {
+    padding: 14px;
+  }
+
+  .sessionCard {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .dateChip {
+    width: 44px;
+    padding: 6px;
+  }
+
+  .day {
+    font-size: 15px;
+  }
+
+  .month {
+    font-size: 10px;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
+}

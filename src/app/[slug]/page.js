@@ -92,11 +92,19 @@ export default async function Register({ params }) {
       <Header />
       <section className="landinghero">
         <div className="container">
-          <div className="breadcrumb">
-            <Link href="/">Home</Link> &gt;{" "}
-            <Link href="/">{webinar.category}</Link> &gt;{" "}
-            {capitalizeSlug(webinar.slug)}
-          </div>
+          {webinar && (
+            <div className="breadcrumb">
+              <Link href="/">Home</Link> &gt;{" "}
+
+              {webinar.category ? (
+                <Link href="/">{webinar.category}</Link>
+              ) : (
+                <span>Loading...</span>
+              )}
+
+              {" "} &gt; {webinar.slug ? capitalizeSlug(webinar.slug) : ""}
+            </div>
+          )}
         </div>
       </section>
       {/* <RegisterComp webinar={webinar} utms={utm} /> */}

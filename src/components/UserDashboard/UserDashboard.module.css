@@ -1,0 +1,1174 @@
+.dashboardMain {
+    padding: 32px;
+    background: var(--bg-light);
+}
+
+.greetingHero {
+    background: linear-gradient(135deg, var(--navy) 0%, #2B5A8A 55%, #1A5568 100%);
+    border-radius: 20px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.greetingHero::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    background: rgba(0, 166, 147, 0.12);
+    border-radius: 50%;
+}
+
+.greetingHero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: 140px;
+    width: 160px;
+    height: 160px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+}
+
+.greetingText {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.greetingText h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.greetingText h1 em {
+    font-style: italic;
+    color: var(--teal-mid);
+}
+
+.greetingText p {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 420px;
+    line-height: 1.6;
+}
+
+.cpdRingWrap {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.cpdRing {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cpdRing svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-90deg);
+}
+
+.cpdRingInner {
+    text-align: center;
+}
+
+.cpdRingVal {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+}
+
+.cpdRingLabel {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 2px;
+}
+
+
+.cpdDetailsTitle {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+}
+
+.cpdStatRow {
+    display: flex;
+    gap: 20px;
+}
+
+
+.cpdStatVal {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.cpdStatLbl {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── STAT CARDS ──────────────────────────── */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.statCard {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.statCard:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.statCardAccent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.statLabel {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.statValue {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.statDelta {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.deltaUp {
+    color: var(--green);
+}
+
+.deltaNeutral {
+    color: var(--text-3);
+}
+
+.statIcon {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+/* ── MAIN GRID ───────────────────────────── */
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 20px;
+}
+
+.mainCol {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sideCol {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── CARDS ───────────────────────────────── */
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.cardHeader {
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardHeader h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.cardBody {
+    padding: 16px 20px;
+}
+
+/* ── CONTINUE WATCHING ───────────────────── */
+.continueGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.continueItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.continueItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.continueItem:first-child {
+    padding-top: 0;
+}
+
+.pastActions{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  align-items:flex-end;
+}
+
+.thumb{
+  width:76px;
+  height:52px;
+  border-radius:8px;
+  flex-shrink:0;
+  overflow:hidden;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.thumbPlay {
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--navy);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.15s;
+}
+
+.continueItem:hover .thumbPlay {
+    transform: scale(1.1);
+}
+
+.thumbTime {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.continueInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.continueTitle {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+}
+
+.badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.continueMeta {
+    font-size: 11.5px;
+    color: var(--text-3);
+    margin-bottom: 7px;
+}
+
+.progressBar {
+    height: 4px;
+    background: var(--bg);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 2px;
+    transition: width 0.3s;
+}
+
+.progressPct {
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 500;
+    margin-left: 6px;
+    flex-shrink: 0;
+}
+
+/* ── UPCOMING ────────────────────────────── */
+.upcomingItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.upcomingItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.upcomingItem:first-child {
+    padding-top: 0;
+}
+
+.dateChip {
+    width: 48px;
+    flex-shrink: 0;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    padding: 6px 4px;
+    border: 1px solid var(--border-strong);
+}
+
+.dateDay {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+}
+
+.dateMon {
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+.upcomingInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.upcomingTitle {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
+.upcomingMeta {
+    font-size: 11.5px;
+    color: var(--text-3);
+}
+
+.upcomingActions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: var(--text-2);
+}
+
+/* ── CERTIFICATES ────────────────────────── */
+.certItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.certItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.certItem:first-child {
+    padding-top: 0;
+}
+
+.certIcon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(255, 165, 0, 0.3);
+}
+
+.certInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.certTitle {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.certSub {
+    font-size: 11.5px;
+    color: var(--text-3);
+}
+
+.certDownload {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border-strong);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-2);
+    transition: all 0.15s;
+    flex-shrink: 0;
+}
+
+.certDownload:hover {
+    background: var(--teal-light);
+    border-color: var(--teal);
+    color: var(--teal);
+}
+
+/* ── CPD BREAKDOWN ───────────────────────── */
+.cpdCategoryRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.cpdCategoryRow:last-child {
+    margin-bottom: 0;
+}
+
+.cpdCatLabel {
+    font-size: 12.5px;
+    color: var(--text-2);
+    width: 160px;
+    flex-shrink: 0;
+}
+
+.cpdBarTrack {
+    flex: 1;
+    height: 6px;
+    background: var(--bg);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.cpdBarFill {
+    height: 100%;
+    border-radius: 3px;
+}
+
+.cpdCatVal {
+    font-size: 12px;
+    color: var(--text-3);
+    width: 28px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* ── RECOMMENDED ─────────────────────────── */
+.recGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.recCard {
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.recCard:hover {
+    border-color: var(--teal);
+    box-shadow: var(--shadow-md);
+    background: var(--bg-card);
+}
+
+.recThumb {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fb; /* light background for logos */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.recImage {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+
+.recBody {
+    padding: 10px 12px;
+}
+
+.recTitle {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 5px;
+}
+
+.recMeta {
+    font-size: 11px;
+    color: var(--text-3);
+}
+
+.recTags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+/* ── ACTIVITY FEED ───────────────────────── */
+.activityItem {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.activityItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.activityItem:first-child {
+    padding-top: 0;
+}
+
+.activityDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.activityText {
+    flex: 1;
+    color: var(--text-2);
+    line-height: 1.5;
+}
+
+.activityText strong {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.activityTime {
+    font-size: 11.5px;
+    color: var(--text-3);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+
+/* ── CALENDAR FEED ───────────────────────── */
+
+.miniCalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.miniCalMonth {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.calNav {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-3);
+    font-size: 14px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.calNav:hover {
+    color: var(--teal);
+    background: var(--teal-light);
+}
+
+.calGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    text-align: center;
+}
+
+.calDayLabel {
+    font-size: 10px;
+    color: var(--text-3);
+    padding: 4px 0;
+    font-weight: 500;
+}
+
+.calDay {
+    font-size: 12px;
+    padding: 5px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-2);
+    transition: all 0.12s;
+}
+
+.calDay:hover {
+    background: var(--teal-light);
+    color: var(--teal);
+}
+
+.calDay.otherMonth {
+    color: var(--border-strong);
+}
+
+.calDay.today {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 600;
+}
+
+.calDay.hasEvent {
+    position: relative;
+}
+
+.calDay.hasEvent::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--teal);
+    border-radius: 50%;
+}
+
+.calDay.today.hasEvent::after {
+    background: var(--orange);
+}
+
+
+/* ─────────────────────────────────────────
+   TABLET (≤1024px)
+───────────────────────────────────────── */
+
+@media (max-width:1024px){
+
+.dashboardMain{
+  padding:24px;
+}
+
+.statsGrid{
+  grid-template-columns:repeat(2,1fr);
+}
+
+.mainGrid{
+  grid-template-columns:1fr;
+}
+
+.greetingHero{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:20px;
+}
+
+.cpdRingWrap{
+  width:100%;
+  justify-content:flex-start;
+}
+
+}
+
+
+/* ─────────────────────────────────────────
+   SMALL TABLET (≤768px)
+───────────────────────────────────────── */
+
+@media (max-width:768px){
+
+.dashboardMain{
+  padding:20px;
+}
+
+.statsGrid{
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.recGrid{
+  grid-template-columns:1fr;
+}
+
+.greetingHero{
+  padding:22px;
+}
+
+.greetingText h1{
+  font-size:22px;
+}
+
+.cpdRingWrap{
+  flex-wrap:wrap;
+  gap:16px;
+}
+
+/* CONTINUE ITEMS */
+
+.continueItem{
+  align-items:flex-start;
+}
+
+}
+
+
+/* ─────────────────────────────────────────
+   MOBILE (≤600px)
+───────────────────────────────────────── */
+
+@media (max-width:600px){
+
+.dashboardMain{
+  padding:18px;
+}
+
+.statsGrid{
+  grid-template-columns:1fr;
+}
+
+.mainGrid{
+  gap:16px;
+}
+
+.cardHeader{
+  padding:14px 16px;
+  box-sizing:border-box;
+}
+
+.cardBody{
+  padding:14px 16px;
+  box-sizing:border-box;
+}
+
+/* PAST SESSION CARD */
+
+.continueItem{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+}
+
+.pastActions{
+  width:100%;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+}
+
+
+.thumb{
+  width:100%;
+  height:auto;
+}
+
+.thumb img{
+  width:100%;
+  height:auto;
+}
+
+.continueInfo{
+  width:100%;
+}
+
+.continueTitle{
+  white-space:normal;
+  font-size:14px;
+}
+
+.continueMeta{
+  font-size:11px;
+}
+
+/* FIX BUTTON AREA */
+
+.continueItem > div:last-child{
+  width:100%;
+  flex-direction:row !important;
+  justify-content:space-between;
+  align-items:center;
+}
+
+
+/* UPCOMING CARD */
+
+.upcomingItem{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:10px;
+}
+
+.upcomingActions{
+  width:100%;
+  flex-direction:row;
+  gap:8px;
+}
+
+.upcomingActions button{
+  flex:1;
+}
+
+/* STATS */
+
+.statValue{
+  font-size:24px;
+}
+
+}
+
+
+/* ─────────────────────────────────────────
+   SMALL MOBILE (≤480px)
+───────────────────────────────────────── */
+
+@media (max-width:480px){
+
+.dashboardMain{
+  padding:16px;
+}
+
+.greetingHero{
+  padding:18px;
+  gap:16px;
+}
+
+.greetingText h1{
+  font-size:20px;
+}
+
+.greetingText p{
+  font-size:12.5px;
+}
+
+.cpdRingWrap{
+  width:100%;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:14px;
+}
+
+.cpdStatRow{
+  width:100%;
+  justify-content:space-between;
+}
+
+/* DATE CHIP */
+
+.dateChip{
+  width:40px;
+}
+
+.dateDay{
+  font-size:18px;
+}
+
+/* BUTTONS */
+
+.upcomingActions button{
+  font-size:12px;
+  padding:6px 10px;
+}
+
+}
+
+
+/* ─────────────────────────────────────────
+   EXTRA SMALL DEVICES (≤320px)
+───────────────────────────────────────── */
+
+@media (max-width:320px){
+
+.dashboardMain{
+  padding:14px;
+}
+
+.statsGrid{
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
+.mainGrid{
+  gap:14px;
+}
+
+/* CARD */
+
+.card{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+
+.mainGrid > *{
+  min-width:0;
+}
+
+.cardHeader{
+  padding:12px;
+  box-sizing:border-box;
+}
+
+.cardBody{
+  padding:12px;
+  box-sizing:border-box;
+}
+
+/* PAST SESSION CARD */
+
+.continueItem{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+}
+
+.thumb{
+  width:100%;
+  height:auto;
+}
+
+.thumb img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
+
+.continueInfo{
+  width:100%;
+  min-width:0;
+}
+
+.continueTitle{
+  white-space:normal;
+  font-size:13px;
+  line-height:1.3;
+  word-break:break-word;
+}
+
+.continueMeta{
+  font-size:10px;
+}
+
+/* ACTION AREA */
+
+.pastActions{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
+.continueItem > div:last-child{
+  width:100%;
+  flex-direction:row !important;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* UPCOMING SESSION CARD */
+
+.upcomingItem{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+}
+
+.upcomingActions{
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  gap:6px;
+}
+
+.upcomingActions button{
+  flex:1;
+  font-size:11px;
+  padding:6px 8px;
+}
+
+/* STATS */
+
+.statCard{
+  padding:12px;
+}
+
+.statValue{
+  font-size:20px;
+}
+
+.statLabel{
+  font-size:11px;
+}
+
+/* CALENDAR */
+
+.calDay{
+  font-size:9px;
+  padding:3px 0;
+}
+
+/* HERO SECTION */
+
+.greetingHero{
+  padding:14px;
+  gap:12px;
+}
+
+.greetingText h1{
+  font-size:16px;
+  line-height:1.3;
+}
+
+.greetingText p{
+  font-size:11px;
+}
+
+/* CPD RING */
+
+.cpdRing{
+  width:60px;
+  height:60px;
+}
+
+.cpdRingVal{
+  font-size:14px;
+}
+
+}

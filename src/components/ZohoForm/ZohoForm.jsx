@@ -4,12 +4,20 @@ import styles from "./ZohoForms.module.css"
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import moment from "moment";
+import { useAuth } from "@/context/AuthContext";
 
 export default function ZohoForm({ webinar, utms }) {
+
+  const { user, logout } = useAuth();
+
+  console.log("User in ZohoForm:", user); // Debugging line
+
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
 
 
   const isTilliKids = webinar?.organisedBy === "Tilli Kids";
@@ -67,6 +75,16 @@ export default function ZohoForm({ webinar, utms }) {
     utm_medium: utms?.utm_medium || "",
     utm_campaign: utms?.utm_campaign || "",
   });
+
+  useEffect(() => {
+    if (user?.email) {
+      setFormData((prev) => ({
+        ...prev,
+        Email: user.email,
+        Mobile: `${user.countryCode}${user.mobileNumber || ""}`
+      }));
+    }
+  }, [user]);
 
   // Generic handler
   const handleChange = (e) => {
@@ -153,7 +171,7 @@ export default function ZohoForm({ webinar, utms }) {
 
     // Free webinar
     if (webinar?.isFree) {
-     const success = await submitRegistration(getSubmitPayload());
+      const success = await submitRegistration(getSubmitPayload());
       if (success) {
         router.push(`/thank-you/${webinar.slug}`);
       }
@@ -215,7 +233,7 @@ export default function ZohoForm({ webinar, utms }) {
 
           if (verifyData.success) {
             // Step D: Submit form after successful payment
-           const success = await submitRegistration(getSubmitPayload());
+            const success = await submitRegistration(getSubmitPayload());
             if (success) {
               router.push(`/thank-you/${webinar.slug}`);
             }
@@ -285,9 +303,9 @@ export default function ZohoForm({ webinar, utms }) {
             }
         );
 
-        console.log("form Data",formData)
+        console.log("form Data", formData)
 
-        return true; 
+        return true;
         // setShowModal(true);
       } else {
         alert("❌ Something went wrong. Try again.");
@@ -485,9 +503,8 @@ export default function ZohoForm({ webinar, utms }) {
                         type="email"
                         name="Email"
                         value={formData.Email}
-                        onChange={handleChange}
-                        placeholder="you@school.edu"
-                        required
+                        readOnly
+                        className={styles.readonlyInput}
                       />
                     </div>
 
@@ -534,7 +551,13 @@ export default function ZohoForm({ webinar, utms }) {
 
                     <div className={styles.formgroup}>
                       <label>Email Address <span className="required">*</span></label>
-                      <input type="email" name="Email" onChange={handleChange} placeholder="you@school.edu" required />
+                      <input
+                        type="email"
+                        name="Email"
+                        value={formData.Email}
+                        readOnly
+                        className={styles.readonlyInput}
+                      />
                     </div>
 
                     <div className={styles.formgroup}>

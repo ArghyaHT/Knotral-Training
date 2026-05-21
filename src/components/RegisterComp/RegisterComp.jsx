@@ -4,10 +4,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./Register.module.css"
 import Link from "next/link";
 import moment from "moment";
-import ZohoForm2 from "../ZohoForm2/ZohoForm2";
-import { IoClose } from "react-icons/io5";
+import { useAuth } from "@/context/AuthContext";
+import { usePathname } from "next/navigation";
+import LoginModal from "../LoginModal/LoginModal";
+import WebinarRegisterModal from "../WebinarRegisterModal/WebinarRegisterModal";
+import { IoCheckmark } from "react-icons/io5";
 
 const RegisterComp = ({ webinar, utms }) => {
+
 
   const [activeVideo, setActiveVideo] = useState(null);
 
@@ -15,10 +19,41 @@ const RegisterComp = ({ webinar, utms }) => {
 
   const [certificate, setCertificate] = useState(null);
 
-  const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-  const isSkoolhouse = webinar.organisedBy === "We Skoolhouse";
-  
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+
+  const [registeredWebinars, setRegisteredWebinars] = useState([]);
+
+  const { user } = useAuth();
+
+  const pathname = usePathname();
+
+
+  useEffect(() => {
+    if (showLoginModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showLoginModal]);
+
+
+  useEffect(() => {
+    if (showRegisterModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showRegisterModal]);
+
+
   useEffect(() => {
     const fetchCertificate = async () => {
       try {
@@ -38,10 +73,48 @@ const RegisterComp = ({ webinar, utms }) => {
       }
     };
 
-    if (webinar.isCertified) {
+    if (webinar?.isCertified) {
       fetchCertificate();
     }
   }, [webinar]);
+
+
+  useEffect(() => {
+    const fetchRegistered = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/user/get-user-registered-webinars`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: user.email
+            })
+          }
+        );
+
+        const data = await res.json();
+
+        // ✅ Console the full response
+        console.log("Registered Webinar API Response:", data);
+
+        if (data.success) {
+          console.log("Registered Webinars:", data.response); // ✅ only webinars
+          setRegisteredWebinars(data.response);
+        }
+
+      } catch (error) {
+        console.error("Error fetching registered webinars:", error);
+      }
+    };
+
+    if (user?.email) {
+      fetchRegistered();
+    }
+
+  }, [user]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -107,28 +180,39 @@ const RegisterComp = ({ webinar, utms }) => {
   const isJanuaryWebinar = moment(webinar?.date).month() === 0; // January = 0
 
   // Determine button text and style based on webinar actions
-  const buttonText =
-    webinar.organisedBy === "We Skoolhouse"
-      ? "Pay and Register"
-      : webinar.actions?.canStartProgram
-        ? "Start Course"
-        : webinar.actions?.canEnroll
-          ? "Watch Now"
-          : "Register Now";
+  const buttonText = webinar?.actions?.canStartProgram
+    ? "Start Course"
+    : webinar?.actions?.canEnroll
+      ? "Watch Now"
+      : "Register Now";
 
-  const buttonClass = webinar.actions?.canStartProgram || webinar.actions?.canEnroll
+  const buttonClass = webinar?.actions?.canStartProgram || webinar?.actions?.canEnroll
     ? "btn btnsecondary btnblock"
     : "btn btnprimary btnblock";
 
   const href =
-    webinar.actions?.canStartProgram || webinar.actions?.canEnroll
-      ? `/course/${webinar.slug}`
-      : `/register/${webinar.slug}`;
+    webinar?.actions?.canStartProgram || webinar?.actions?.canEnroll
+      ? `/course/${webinar?.slug}`
+      : `/register/${webinar?.slug}`;
 
 
   const hasPastSessions = Boolean(
     webinar?.pastSessions && webinar.pastSessions.length > 0
   );
+
+  // console.log("Registered Webinars in Component:", registeredWebinars); // ✅ log registered webinars
+  // console.log("Current Webinar ID:", webinar?._id, webinar?.date); // ✅ log current webinar ID
+
+  const isRegistered = (registeredWebinars || []).some(r => {
+    const sameWebinar = String(r.webinarId) === String(webinar?._id);
+
+    const regDate = new Date(r.webinarDate).toISOString().split("T")[0];
+    const webinarDate = new Date(webinar?.date).toISOString().split("T")[0];
+
+    const sameDate = regDate === webinarDate;
+
+    return sameWebinar && sameDate;
+  });
 
   return (
     <section className={styles.landingcontent}>
@@ -138,9 +222,9 @@ const RegisterComp = ({ webinar, utms }) => {
           <div className={styles.maincontent}>
             <div className={styles.spbadge}>
               <Link
-                href={webinar.link || "/"}
-                target={webinar.link ? "_blank" : "_self"}
-                rel={webinar.link ? "noopener noreferrer" : undefined}
+                href={webinar?.link || "/"}
+                target={webinar?.link ? "_blank" : "_self"}
+                rel={webinar?.link ? "noopener noreferrer" : undefined}
                 className={styles.productlink}
               >
                 <div
@@ -154,33 +238,33 @@ const RegisterComp = ({ webinar, utms }) => {
                   }}
                 >
                   <img
-                    src={webinar.logo.url}
+                    src={webinar?.logo?.url}
                     alt="Logo"
                     style={{ width: "65px", height: "65px" }}
                   />
                 </div>
               </Link>
-              {webinar.isLive && (
+              {webinar?.isLive && (
                 <span className="badge badgelive">LIVE WEBINAR</span>
               )}
 
-              {webinar.isCertified && (
+              {webinar?.isCertified && (
                 <span className="badge badgecert">Participation Certificate Included</span>
               )}
 
             </div>
 
             <h1>
-              {webinar.title}
+              {webinar?.title}
             </h1>
             <p className={styles.description}>
-              {webinar.description}
+              {webinar?.description}
             </p>
 
             <div className={styles.contentsection}>
               <h2>What You'll Learn</h2>
-              {/* <ul>
-                {webinar.features.map((item) => (
+              <ul>
+                {webinar?.features.map((item) => (
                   <li key={item._id}>{item.feature}</li>
                 ))}
               </ul> */}
@@ -252,7 +336,7 @@ const RegisterComp = ({ webinar, utms }) => {
               <div className={styles.contentsection}>
                 <h2>Who Should Attend</h2>
                 <div className={styles.audiencegrid}>
-                  {webinar.whoCanAttend && webinar.whoCanAttend.map((audience) => {
+                  {webinar?.whoCanAttend && webinar?.whoCanAttend.map((audience) => {
                     // Map keys to image URLs
                     const audienceIcons = {
                       teachers: "/attend1.png",
@@ -567,11 +651,11 @@ const RegisterComp = ({ webinar, utms }) => {
 
 
             <div className={styles.contentsection}>
-              {webinar.trainer[0] && (
+              {webinar?.trainer[0] && (
                 <>
                   <h2>Meet Your Trainer</h2>
                   <div className={styles.trainers}>
-                    {webinar.trainer && webinar.trainer.map((t, index) => (
+                    {webinar?.trainer && webinar?.trainer.map((t, index) => (
                       <div className={styles.trainercard} key={index}>
                         <div className={styles.photo}>
                           <img
@@ -621,26 +705,26 @@ const RegisterComp = ({ webinar, utms }) => {
                 </div>
               )}
               <div className={styles.benefitbox}>
-                <h3>{webinar.attendeeBenefits.title}</h3>
+                <h3>{webinar?.attendeeBenefits?.title}</h3>
                 {/* <p style={{ marginBottom: "16px", opacity: 0.9 }}>
                   30-Day Free Trial of {webinar.organisedBy}
                 </p> */}
                 <ul>
-                  {webinar.attendeeBenefits?.features?.map((feature, index) => (
+                  {webinar?.attendeeBenefits?.features?.map((feature, index) => (
                     <li key={index} className={styles.benefits}>{feature}</li>
                   ))}
                 </ul>
-                <Link href={webinar.link || "/"}
-                  target={webinar.link ? "_blank" : "_self"}
-                  rel={webinar.link ? "noopener noreferrer" : undefined} className={styles.productlink}>
-                  Learn More About {webinar.organisedBy} →
+                <Link href={webinar?.link || "/"}
+                  target={webinar?.link ? "_blank" : "_self"}
+                  rel={webinar?.link ? "noopener noreferrer" : undefined} className={styles.productlink}>
+                  Learn More About {webinar?.organisedBy} →
                 </Link>
               </div>
             </div>
 
 
             {/* 🟢 SHOW PAST SESSIONS ONLY WHEN WEBINAR IS STOPPED */}
-            {!webinar.isStopped && hasPastSessions && (
+            {!webinar?.isStopped && hasPastSessions && (
               <>
                 <div className={styles.pastsessionssection}>
                   <div className={styles.pastsessionsheader}>
@@ -721,64 +805,67 @@ const RegisterComp = ({ webinar, utms }) => {
           </div>
 
           {/* 🔴 ACTIVE WEBINAR → Show Registration */}
-          {!webinar.isStopped && (
+          {!webinar?.isStopped && (
             <div className={styles.registrationcard}>
               <div className={styles.regmeta}>
                 <div className={styles.item}>
                   <img src="/form2.png" alt="date" className={styles.icon} />
-                  {moment(webinar.date).format("MMM DD, YYYY")}
+                  {moment(webinar?.date).format("MMM DD, YYYY")}
                 </div>
                 <div className={styles.item}>
                   <img src="/form1.png" alt="start time" className={styles.icon} />
-                  {webinar.startTime}
+                  {webinar?.startTime}
                 </div>
                 <div className={styles.item}>
                   <img src="/form3.png" alt="duration" className={styles.icon} />
-                  {webinar.duration}
+                  {webinar?.duration}
                 </div>
                 <div className={styles.item}>
                   <img src="/form4.png" alt="mode" className={styles.icon} />
-                  {webinar.mode}
+                  {webinar?.mode}
                 </div>
               </div>
 
               <div className={styles.regdivider}></div>
 
-              <div className={`${styles.regprice} ${webinar.isFree ? styles.free : ""}`}>
-                {webinar.isFree ? (
-                  "FREE"
-                ) : webinar.organisedBy === "We Skoolhouse" ? (
-                  <>
-                    {/* <span className={styles.originalPrice}>₹4774</span>{" "} */}
-                    <span className={styles.discountedPrice}>₹{webinar.price}</span>
-                  </>
-                ) : (
-                  `₹${webinar.price}`
-                )}
+              <div className={`${styles.regprice} ${webinar?.isFree ? styles.free : ""}`}>
+                {webinar?.isFree ? "FREE" : `₹${webinar?.price}`}
               </div>
 
-              {isSkoolhouse ? (
+              {/* <Link href={href} className={buttonClass}>
+                {buttonText}
+              </Link> */}
+
+              {!user ? (
                 <button
                   className={buttonClass}
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setShowLoginModal(true)}
                 >
                   {buttonText}
                 </button>
+              ) : isRegistered ? (
+                <button
+                  className={`${buttonClass} btndisabled`}
+                  disabled
+                >
+                  <IoCheckmark style={{ marginRight: "6px" }} />
+                  Registered
+                </button>
               ) : (
-                <Link href={href} className={buttonClass}>
+                <button
+                  className={buttonClass}
+                  onClick={() => setShowRegisterModal(true)}
+                >
                   {buttonText}
-                </Link>
+                </button>
               )}
 
-              {webinar.bonus?.title && (
+
+              {webinar?.bonus?.title && (
                 <div className={styles.regbonus}>
-                  <div className={styles.label}>
-                    {webinar.organisedBy === "We Skoolhouse"
-                      ? "Limited Time Offer"
-                      : "Bonus"}
-                  </div>
-                  <p>{webinar.bonus.title}</p>
-                  <p>{webinar.bonus.description || ""}</p>
+                  <div className={styles.label}>BONUS</div>
+                  <p>{webinar?.bonus?.title}</p>
+                  <p>{webinar?.bonus?.description || ""}</p>
                 </div>
               )}
 
@@ -796,7 +883,7 @@ const RegisterComp = ({ webinar, utms }) => {
           )}
 
           {/* 🟢 STOPPED WEBINAR → Show Past Sessions */}
-          {webinar.isStopped && hasPastSessions && (
+          {webinar?.isStopped && hasPastSessions && (
             <>
               <div className={styles.registrationcard}>
                 <div className={styles.pastsessionsheader}>
@@ -874,21 +961,22 @@ const RegisterComp = ({ webinar, utms }) => {
         </div>
       </div>
 
-      {showModal && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modal}>
+      <LoginModal
+        show={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLoginSuccess={() => {
+          setShowLoginModal(false);
+          setShowRegisterModal(true);
+        }}
+      />
 
-            <button
-              className={styles.closeBtn}
-              onClick={() => setShowModal(false)}
-            >
-              <IoClose size={26} />
-            </button>
-
-            <ZohoForm2 webinar={webinar} utms={utms} />
-
-          </div>
-        </div>
+      {showRegisterModal && (
+        <WebinarRegisterModal
+          webinar={webinar}
+          user={user}
+          onClose={() => setShowRegisterModal(false)}
+          utms={utms}
+        />
       )}
     </section>
   );

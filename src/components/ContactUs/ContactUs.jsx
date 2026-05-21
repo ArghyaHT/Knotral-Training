@@ -2,10 +2,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ContactUs.module.css"
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 const ContactUs = () => {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+
+  const {user} = useAuth();
 
   useEffect(() => {
     if (showModal) {
@@ -19,16 +22,35 @@ const ContactUs = () => {
     };
   }, [showModal]);
 
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    Mobile: "+91",
-    category: "",
-    organization: "",
-    city: "",
-    message: ""
-  });
+const [formData, setFormData] = useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  Mobile: "+91",
+  category: "",
+  organization: "",
+  message: ""
+});
+
+useEffect(() => {
+  if (user) {
+    setFormData((prev) => ({
+      ...prev,
+      firstName: user.firstName || "",
+      lastName: user.lastName || "",
+      email: user.email || "",
+      category:
+        user.roleDescription === "Other"
+          ? user.otherRoleDescription
+          : user.roleDescription,
+                organization: user.organizationName || "",
+                  Mobile: user.countryCode && user.mobileNumber
+        ? `${user.countryCode} ${user.mobileNumber}`
+        : "+91",
+    }));
+    
+  }
+}, [user]);
 
   // Update state on input change
   const handleChange = (e) => {
@@ -87,7 +109,7 @@ const ContactUs = () => {
           Mobile: "+91",
           category: "",
           organization: "",
-          city: "",
+          // city: "",
           message: ""
         });
         // Redirect to home page
@@ -311,7 +333,7 @@ const ContactUs = () => {
                 />
               </div>
 
-              <div className={styles.formgroup}>
+              {/* <div className={styles.formgroup}>
                 <label className={styles.formlabel} htmlFor="city">
                   City *
                 </label>
@@ -325,7 +347,7 @@ const ContactUs = () => {
                   value={formData.city}
                   onChange={handleChange}
                 />
-              </div>
+              </div> */}
 
               <div className={styles.formgroup}>
                 <label className={styles.formlabel} htmlFor="message">
