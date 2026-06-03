@@ -179,6 +179,25 @@ const ThankYou = ({ webinar }) => {
                     </div>
                 </div>
 
+                <div className={styles.whatsappSection}>
+                    <div className={styles.whatsappContent}>
+                        <div className={styles.whatsappIcon}>💬</div>
+                        <h2>Join Our WhatsApp Community</h2>
+                        <p>
+                            To receive important updates, reminders, session materials, and support,
+                            please join our official WhatsApp Community.
+                        </p>
+                        <a
+                            href="https://chat.whatsapp.com/GzphiwBuZWSAxtP8xHNKqs"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.whatsappBtn}
+                        >
+                            Join the WhatsApp Community Now
+                        </a>
+                    </div>
+                </div>
+
                 <div className={styles.webinarsSection}>
                     <div className={styles.sectionHeader}>
                         <h2>
