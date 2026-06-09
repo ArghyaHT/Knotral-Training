@@ -1,0 +1,1566 @@
+ .landingcontent {
+     padding: 48px 0;
+ }
+
+ .landinggrid {
+     display: grid;
+     grid-template-columns: 1fr 400px;
+     gap: 48px;
+       align-items: start; /* 🔥 THIS FIXES EVERYTHING */
+
+ }
+
+ .maincontent .spbadge {
+     display: flex;
+     align-items: center;
+     gap: 16px;
+     margin-bottom: 24px;
+ }
+
+ .maincontent .spbadge .logo {
+     width: 64px;
+     height: 64px;
+     background: var(--white);
+     border: 1px solid var(--border-light);
+     border-radius: 12px;
+ }
+
+ .maincontent h1 {
+     font-size: 32px;
+     line-height: 1.3;
+     margin-bottom: 16px;
+ }
+
+ .maincontent .description {
+     font-size: 18px;
+     color: var(--text-secondary);
+     margin-bottom: 32px;
+ }
+
+ .contentsection {
+     padding: 32px 0;
+     border-top: 1px solid var(--border-light);
+ }
+
+ .contentsection h2 {
+     font-size: 20px;
+     margin-bottom: 20px;
+ }
+
+ .subheading{
+    font-size: 20px;
+    margin-bottom: 20px;
+
+ }
+
+ .contentsection ul {
+     list-style: none;
+ }
+
+ .contentsection ul li {
+     padding: 8px 0;
+     padding-left: 28px;
+     position: relative;
+ }
+
+ .contentsection ul li::before {
+     content: "✓";
+     position: absolute;
+     left: 0;
+     color: var(--accent-teal);
+     font-weight: 600;
+ }
+
+ .contentsection ul .benefits::before {
+     content: "✓";
+     position: absolute;
+     left: 0;
+     color: var(--white);
+     font-weight: 600;
+ }
+
+
+ .audiencegrid {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     gap: 16px;
+ }
+
+ .audienceitem {
+     text-align: center;
+     padding: 20px;
+     background: var(--bg-light);
+     border-radius: 12px;
+ }
+
+ .audienceIcon {
+     width: 70px;
+     height: 70px;
+     object-fit: contain;
+ }
+
+ .audienceitem .label {
+     font-size: 13px;
+     font-weight: 500;
+ }
+
+ .trainercard {
+     display: flex;
+     gap: 20px;
+     background: var(--bg-light);
+     padding: 24px;
+     border-radius: 12px;
+ }
+
+ .trainercard .photo {
+     width: 80px;
+     height: 80px;
+     border-radius: 50%;
+     background: var(--border-light);
+     flex-shrink: 0;
+     overflow: hidden;
+ }
+
+ .trainercard .photo img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: block;
+ }
+
+ .trainercard h3 {
+     font-size: 18px;
+     margin-bottom: 4px;
+ }
+
+ .trainercard .title {
+     font-size: 14px;
+     color: var(--secondary-blue);
+     margin-bottom: 8px;
+ }
+
+ .trainercard p {
+     font-size: 14px;
+     color: var(--text-secondary);
+ }
+
+ .agendalist {
+     background: var(--bg-light);
+     border-radius: 12px;
+     padding: 24px;
+ }
+
+ .agendaitem {
+     display: flex;
+     gap: 16px;
+     padding: 12px 0;
+     border-bottom: 1px solid var(--border-light);
+ }
+
+ .agendaitem:last-child {
+     border-bottom: none;
+ }
+
+ .agendaitem .time {
+     font-size: 13px;
+     font-weight: 600;
+     color: var(--secondary-blue);
+     width: 80px;
+     flex-shrink: 0;
+ }
+
+ .agendaitem .topic {
+     font-size: 14px;
+ }
+
+ .benefitbox {
+     background: linear-gradient(135deg, var(--accent-teal) 0%, #646b73 100%);
+     border-radius: 16px;
+     padding: 32px;
+     color: var(--white);
+ }
+
+ .benefitbox h3 {
+     font-size: 18px;
+     margin-bottom: 16px;
+ }
+
+ .benefitbox ul {
+     list-style: none;
+ }
+
+ .benefitbox ul li {
+     padding: 8px 0;
+     padding-left: 24px;
+     position: relative;
+ }
+
+ .benefitbox ul li::before {
+     content: "✓";
+     position: absolute;
+     left: 0;
+ }
+
+ .benefitbox .productlink {
+     display: inline-block;
+     margin-top: 16px;
+     color: var(--white);
+     text-decoration: underline;
+ }
+
+ /* REGISTRATION CARD */
+ .registrationcard {
+     background: var(--white);
+     border: 1px solid var(--border-light);
+     border-radius: 16px;
+     padding: 24px;
+     position: sticky;
+     top: 96px;
+     box-shadow: var(--shadow-card);
+ }
+
+ .regmeta {
+     margin-bottom: 20px;
+ }
+
+ .regmeta .item {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     padding: 8px 0;
+     font-size: 14px;
+ }
+
+ .regmeta .item .icon {
+     width: 18px;
+     height: 18px;
+     margin-right: 8px;
+     object-fit: contain;
+ }
+
+ .regdivider {
+     height: 1px;
+     background: var(--border-light);
+     margin: 20px 0;
+ }
+
+ .regprice {
+     font-size: 28px;
+     font-weight: 700;
+     margin-bottom: 16px;
+ }
+
+ .regprice.free {
+     color: var(--free-green);
+ }
+
+ .regprice.free {
+     color: var(--free-green);
+ }
+
+ .regprice.price {
+     color: var(--primary-navy);
+ }
+
+ .btnblock {
+     width: 100%;
+     padding: 16px;
+     font-size: 16px;
+ }
+
+ .regbonus {
+     background: var(--bg-light);
+     border-radius: 8px;
+     padding: 16px;
+     margin-top: 16px;
+ }
+
+ .regbonus .label {
+     font-size: 12px;
+     color: var(--accent-teal);
+     font-weight: 600;
+     margin-bottom: 4px;
+     text-transform: uppercase;
+ }
+
+ .regbonus p {
+     font-size: 14px;
+ }
+
+ .regfooter {
+     margin-top: 20px;
+     text-align: center;
+     /* font-size: 14px; */
+     color: var(--text-secondary);
+ }
+
+ .regfooter .iconSmall {
+     width: 16px;
+     height: 16px;
+     margin: 0 4px 0 4px;
+     object-fit: contain;
+     vertical-align: middle;
+ }
+
+ .regfooter a {
+     color: var(--secondary-blue);
+ }
+
+ .actionLink {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     gap: 6px;
+     text-decoration: none;
+     font-weight: 500;
+     font-size: 12px;
+ }
+
+ .linkIcon {
+     width: 16px;
+     height: 16px;
+     object-fit: contain;
+ }
+
+ /* Past Sessions Section */
+ .pastsessionssection {
+     background: linear-gradient(135deg, var(--bg-light), #e5e7eb);
+     border-radius: 20px;
+     padding: 2.5rem;
+     margin-bottom: 3rem;
+     border: 2px solid #e5e7eb;
+ }
+
+ .pastsessionsheader {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 2rem;
+ }
+
+ .pastsessionstitle {
+     font-size: 20px;
+ }
+
+ /* .viewtoggle {
+     display: flex;
+     gap: 0.5rem;
+     background: white;
+     padding: 0.3rem;
+     border-radius: 10px;
+ }
+
+ .togglebtn {
+     padding: 0.6rem 1.2rem;
+     background: transparent;
+     border: none;
+     border-radius: 8px;
+     font-weight: 700;
+     cursor: pointer;
+     transition: all 0.3s;
+     color: var(--text-gray);
+ }
+
+ .togglebtn.active {
+     background: var(--primary-navy);
+     color: white;
+ } */
+
+ /* Video Grid for Past Sessions */
+ .pastrecordingsgrid {
+     display: grid;
+     grid-template-columns: repeat(2, minmax(300px, 1fr));
+     gap: 2rem;
+ }
+
+.pastrecordingsgrid1 {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
+    gap: 2rem;
+    max-height: 500px;
+
+    overflow-y: auto;   /* 🔥 THIS enables vertical scroll */
+    padding-right: 8px; /* optional: prevents scrollbar overlap */
+}
+
+ .recordingcard {
+     background: var(--white);
+     border-radius: 16px;
+     overflow: hidden;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+     transition: all 0.3s ease;
+     cursor: pointer;
+ }
+
+ .recordingcard:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+ }
+
+ .recordingthumbnail {
+     position: relative;
+     padding-bottom: 56.25%;
+     background: linear-gradient(135deg, var(--primary-navy), #2a4565);
+     overflow: hidden;
+ }
+
+ .recordingthumbnail img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+ .playoverlay {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width: 60px;
+     height: 60px;
+     background: var(--cta-orange);
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 2rem;
+     color: white;
+     transition: all 0.3s ease;
+ }
+
+ .recordingcard:hover .playoverlay {
+     transform: translate(-50%, -50%) scale(1.1);
+     box-shadow: 0 0 30px rgba(254, 46, 0, 0.6);
+ }
+
+ .recordinginfo {
+     padding: 1.5rem;
+ }
+
+ .recordingdate {
+     font-size: 0.85rem;
+     color: var(--text-gray);
+     font-weight: 600;
+     margin-bottom: 0.5rem;
+ }
+
+ .recordingtitle {
+     font-size: 1.1rem;
+     color: var(--primary-navy);
+     font-weight: 700;
+     margin-bottom: 1rem;
+ }
+
+ .recordingstats {
+     display: flex;
+     gap: 1.5rem;
+     font-size: 0.9rem;
+     color: var(--text-gray);
+ }
+
+ .stat {
+     display: flex;
+     align-items: center;
+     gap: 0.4rem;
+ }
+
+ .videoplayerheader {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 1.5rem;
+ }
+
+ .backbtn {
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+     padding: 0.8rem 1.5rem;
+     background: var(--bg-light);
+     border: none;
+     border-radius: 8px;
+     font-weight: 700;
+     cursor: pointer;
+     transition: all 0.3s;
+     color: var(--primary-navy);
+ }
+
+ .backbtn:hover {
+     background: var(--primary-navy);
+     color: white;
+ }
+
+ .videocontainer {
+     position: relative;
+     padding-bottom: 56.25%;
+     height: 0;
+     overflow: hidden;
+     border-radius: 12px;
+     background: #000;
+     margin-bottom: 2rem;
+ }
+
+ .videocontainer iframe {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+ }
+
+ .videometa {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 1.5rem;
+     background: var(--bg-light);
+     border-radius: 12px;
+ }
+
+ .videostatslist {
+     display: flex;
+     gap: 2rem;
+ }
+
+ .videoactions {
+     display: flex;
+     gap: 1rem;
+ }
+
+ .actionbtn {
+     padding: 0.8rem 1.5rem;
+     border: 2px solid var(--bg-light);
+     background: white;
+     border-radius: 8px;
+     font-weight: 600;
+     cursor: pointer;
+     transition: all 0.3s;
+ }
+
+ .actionbtn:hover {
+     border-color: var(--cta-orange);
+     color: var(--cta-orange);
+ }
+
+
+ .videooverlay {
+     position: fixed;
+     inset: 0;
+     background: rgba(0, 0, 0, 0.65);
+     backdrop-filter: blur(4px);
+     z-index: 9999;
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 1.5rem;
+ }
+
+ /* Player Container */
+ .videoplayersection {
+     max-width: 800px;
+     width: 100%;
+     max-height: 100vh;
+     overflow-y: auto;
+
+     background: white;
+     border-radius: 20px;
+     padding: 1.8rem;
+
+     animation: scaleIn 0.25s ease;
+ }
+
+
+ /* Audience Tabs */
+ .audiencetabs {
+     display: flex;
+     align-items: center;
+     gap: 5px;
+     margin-bottom: 3rem;
+     border-bottom: 3px solid var(--bg-light);
+     flex-wrap: wrap;
+ }
+
+
+
+ .audiencetab {
+     padding: 10px 25px;
+     background: white;
+     border: 2px solid var(--bg-light);
+     border-bottom: none;
+     border-radius: 12px 12px 0 0;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     font-weight: 700;
+     font-size: 1.1rem;
+     color: var(--text-gray);
+     position: relative;
+     bottom: -3px;
+     display: flex;
+     align-items: center;
+     gap: 5px;
+ }
+
+ .audiencetab:hover {
+     background: var(--bg-light);
+     color: var(--primary-navy);
+ }
+
+ .audiencetab.active {
+     display: flex;
+     align-items: center;
+     gap: 5px;
+     background: var(--primary-navy);
+     color: white;
+     border-color: var(--primary-navy);
+     transform: translateY(-3px);
+ }
+
+ .tabicon {
+     width: 30px;
+     height: 30px;
+     object-fit: contain;
+ }
+
+ .tabcontent {
+     display: none;
+ }
+
+ .tabcontent.active {
+     display: block;
+     animation: fadeIn 0.5s ease;
+ }
+
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+         transform: translateY(10px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ /* Content Sections */
+ /* .contentsection {
+     margin-bottom: 4rem;
+ } */
+
+ .sectiontitle {
+     font-size: 2.5rem;
+     color: var(--primary-navy);
+     text-transform: uppercase;
+     margin-bottom: 2rem;
+     position: relative;
+     padding-bottom: 1rem;
+ }
+
+ .sectiontitle::after {
+     content: '';
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     width: 80px;
+     height: 4px;
+     background: var(--cta-orange);
+ }
+
+ .learninglist {
+     list-style: none;
+     display: grid;
+     gap: 1.2rem;
+ }
+
+ .learningitem {
+     display: flex;
+     gap: 1rem;
+     align-items: flex-start;
+     padding: 1.5rem;
+     background: var(--bg-light);
+     transition: all 0.3s ease;
+ }
+
+ .learningicon {
+     font-size: 1.5rem;
+     color: var(--cta-orange);
+ }
+
+ .learningtext {
+     font-size: 1.05rem;
+     line-height: 1.6;
+     font-weight: 500;
+ }
+
+ /* Benefits Grid */
+ .benefitsgrid {
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 2rem;
+ }
+
+ .benefitcard {
+     background: linear-gradient(135deg, var(--bg-light), white);
+     padding: 2.5rem;
+     border-radius: 16px;
+     border-left: 5px solid var(--cta-orange);
+     transition: all 0.3s;
+ }
+
+ .benefitcard:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+ }
+
+ .benefiticon {
+     width: 70px;
+     height: 70px;
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     margin-bottom: 1.5rem;
+ }
+
+ .benefiticonImage {
+     display: block;
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+ }
+
+ .benefittitle {
+     font-size: 1.2rem;
+     color: var(--primary-navy);
+     margin-bottom: 1rem;
+     text-transform: uppercase;
+ }
+
+ .benefitdescription {
+     color: var(--text-gray);
+     line-height: 1.8;
+ }
+
+ /* Why Attend Grid */
+ .whyattendgrid {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 2rem;
+ }
+
+ .whycard {
+     text-align: center;
+     padding: 2.5rem 2rem;
+     background: white;
+     border: 2px solid var(--bg-light);
+     border-radius: 16px;
+     transition: all 0.3s;
+ }
+
+ .whycard:hover {
+     border-color: var(--accent-orange);
+     transform: translateY(-5px);
+     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+ }
+
+ .whyicon {
+     width: 64px;
+     height: 64px;
+     margin: 0 auto 1.5rem auto;
+     /* ⬅️ centers horizontally */
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .whyiconImage {
+     display: block;
+     /* ⬅️ removes inline-img spacing */
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+ }
+
+ .whytitle {
+     font-size: 1.5rem;
+     color: var(--primary-navy);
+     margin-bottom: 1rem;
+     text-transform: uppercase;
+ }
+
+ .whytext {
+     color: var(--text-gray);
+     line-height: 1.7;
+ }
+
+.certificateWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.certificateImage {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  user-select: none;
+  margin-bottom: 30px;
+}
+
+ /* Smooth entry */
+ @keyframes scaleIn {
+     from {
+         transform: scale(0.96);
+         opacity: 0;
+     }
+
+     to {
+         transform: scale(1);
+         opacity: 1;
+     }
+ }
+
+
+ .learningSection {
+  margin-top: 2rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.cardContent h3 {
+  font-size: 18px;         /* adjust as needed */
+  white-space: nowrap;      /* keep text on one line */
+  overflow: hidden;         /* hide overflowing text */
+  text-overflow: ellipsis;  /* show ... at the end */
+}
+
+.cardContent p {
+  font-size: 14px;         /* adjust as needed */
+}
+
+
+.imagePlaceholder {
+  width: 100%;
+  height: 150px; /* same size for all placeholders */
+  background: #f5f5f5;
+  position: relative;
+  overflow: hidden;
+}
+
+.imagePlaceholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures image fills the placeholder */
+  display: block;
+}
+
+
+
+.bgTan { background: #f0e6d2; }
+.bgDark { background: #333; }
+
+.cardContent { padding: 1rem; }
+
+
+.originalPrice {
+  text-decoration: line-through; /* strikes through original price */
+  color: #999;
+  margin-right: 0.5rem;
+}
+
+.discountedPrice {
+  font-weight: bold;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal {
+  position: relative;
+  width: 900px;
+  max-width: 95%;
+  height: 90vh;
+
+  background: #fff;
+  border-radius: 12px;
+
+  overflow-y: auto;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+
+  font-size: 26px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  color: #333;
+}
+
+.closeBtn:hover {
+  color: #000;
+}
+
+.whyThisWebinarMatters {
+  width: 100%;
+}
+
+.whyThisWebinarMatters p {
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.8;
+color: var(--text-secondary)}
+
+.whyThisWebinarMatters ul {
+  margin: 0 0 20px;
+}
+
+.whyThisWebinarMatters li {
+  margin-bottom: 10px;
+  font-size: 18px;
+  line-height: 1.8;
+color: var(--text-secondary)}
+
+.whyThisWebinarMatters .highlight {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+.tabDescription {
+     margin-top: 12px;
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+ /* RESPONSIVE */
+ @media (max-width: 1024px) {
+     .landinggrid {
+         grid-template-columns: 1fr;
+     }
+
+     .registrationcard {
+         position: static;
+     }
+
+     .trainercard {
+         padding: 20px;
+         gap: 16px;
+     }
+
+     .trainercard .photo {
+         width: 70px;
+         height: 70px;
+     }
+
+     .trainercard h3 {
+         font-size: 17px;
+     }
+
+     .trainercard .title,
+     .trainercard p {
+         font-size: 13px;
+     }
+
+     .maincontent h1 {
+         font-size: 28px;
+         margin-bottom: 14px;
+     }
+
+     .maincontent .description {
+         font-size: 16px;
+         margin-bottom: 28px;
+     }
+
+     .contentsection ul li {
+         padding-left: 24px;
+         font-size: 16px;
+     }
+
+     .contentsection ul li::before {
+         font-size: 16px;
+     }
+
+     .pastsessionssection {
+         padding: 2rem;
+         border-radius: 18px;
+     }
+
+     .pastsessionsheader {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 1rem;
+     }
+
+     .pastsessionstitle {
+         font-size: 18px;
+     }
+
+     .pastrecordingsgrid {
+         grid-template-columns: 1fr;
+         gap: 1.5rem;
+     }
+
+     .playoverlay {
+         width: 52px;
+         height: 52px;
+         font-size: 1.6rem;
+     }
+
+     .recordinginfo {
+         padding: 1.3rem;
+     }
+
+     .videoplayersection {
+         max-width: 100%;
+         padding: 1.5rem;
+         border-radius: 16px;
+     }
+
+     .videometa {
+         gap: 1rem;
+     }
+
+     .videostatslist {
+         gap: 1.5rem;
+     }
+
+     .audiencetab {
+         padding: 1rem 2rem;
+         font-size: 1rem;
+     }
+
+     .sectiontitle {
+         font-size: 2.1rem;
+     }
+
+     .benefitsgrid {
+         grid-template-columns: 1fr;
+     }
+
+     .whyattendgrid {
+         grid-template-columns: repeat(2, 1fr);
+     }
+       .modal {
+    width: 90%;
+    height: 88vh;
+    padding: 18px;
+  }
+
+  .closeBtn {
+    font-size: 24px;
+    top: 10px;
+    right: 14px;
+  }
+ }
+
+ @media (max-width: 768px) {
+     .audiencegrid {
+         grid-template-columns: repeat(2, 1fr);
+     }
+
+     .trainercard {
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+         padding: 16px;
+         gap: 12px;
+     }
+
+     .trainercard .photo {
+         width: 80px;
+         height: 80px;
+     }
+
+     .trainercard h3 {
+         font-size: 16px;
+     }
+
+     .trainercard .title,
+     .trainercard p {
+         font-size: 13px;
+     }
+
+     .maincontent h1 {
+         font-size: 24px;
+         margin-bottom: 12px;
+         line-height: 1.25;
+     }
+
+     .maincontent .description {
+         font-size: 15px;
+         margin-bottom: 24px;
+     }
+
+     .contentsection ul li {
+         padding-left: 22px;
+         font-size: 15px;
+     }
+
+     .contentsection ul li::before {
+         font-size: 15px;
+     }
+
+     .pastsessionssection {
+         padding: 1.6rem;
+         border-radius: 16px;
+     }
+
+     .pastsessionstitle {
+         font-size: 17px;
+     }
+
+     .recordingtitle {
+         font-size: 1rem;
+     }
+
+     .recordingstats {
+         gap: 1rem;
+         font-size: 0.85rem;
+         flex-wrap: wrap;
+     }
+
+     .videoplayerheader {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 1rem;
+     }
+
+     .backbtn {
+         padding: 0.7rem 1.2rem;
+         font-size: 0.95rem;
+     }
+
+     .videometa {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 1rem;
+         padding: 1.2rem;
+     }
+
+     .videostatslist {
+         flex-wrap: wrap;
+         gap: 1rem;
+     }
+
+     .videoactions {
+         width: 100%;
+         flex-wrap: wrap;
+         gap: 0.75rem;
+     }
+
+     .actionbtn {
+         flex: 1;
+         text-align: center;
+         padding: 0.7rem 1rem;
+     }
+
+     .audiencetabs {
+         width: 100%;
+         display: flex;
+         flex-direction: row;
+         justify-content: space-between;
+         /* spread across full width */
+         align-items: stretch;
+         gap: 0.5rem;
+     }
+
+     .audiencetab {
+         flex: 1;
+         /* 🔥 key: equal width */
+         display: flex;
+         align-items: center;
+         justify-content: center;
+
+         padding: 0.9rem 1.5rem;
+         font-size: 0.95rem;
+         border-radius: 10px 10px 0 0;
+         text-align: center;
+         white-space: nowrap;
+     }
+
+
+     .tabicon {
+         width: 24px;
+         height: 24px;
+     }
+
+     .sectiontitle {
+         font-size: 1.9rem;
+     }
+
+     .learningitem {
+         padding: 1.2rem;
+     }
+
+     .whyattendgrid {
+         grid-template-columns: 1fr;
+     }
+
+      .modalOverlay {
+    align-items: flex-start;
+    padding: 20px 10px;
+  }
+
+  .modal {
+    width: 100%;
+    height: auto;
+    max-height: 92vh;
+
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .closeBtn {
+    font-size: 22px;
+    top: 10px;
+    right: 12px;
+  }
+ }
+
+ /* Small Phones <=468px */
+ @media (max-width: 468px) {
+    .subheading{
+    font-size: 15px;
+    margin-bottom: 20px;
+
+ }
+
+     .trainercard {
+         padding: 12px;
+         gap: 10px;
+     }
+
+     .trainercard .photo {
+         width: 70px;
+         height: 70px;
+     }
+
+     .trainercard h3 {
+         font-size: 15px;
+     }
+
+     .trainercard .title,
+     .trainercard p {
+         font-size: 12px;
+     }
+
+     .maincontent h1 {
+         font-size: 22px;
+         margin-bottom: 10px;
+         line-height: 1.2;
+     }
+
+     .maincontent .description {
+         font-size: 14px;
+         margin-bottom: 20px;
+     }
+
+     .contentsection ul li {
+         padding-left: 20px;
+         font-size: 14px;
+     }
+
+     .contentsection ul li::before {
+         font-size: 14px;
+     }
+
+     .pastsessionssection {
+         padding: 1.3rem;
+         border-radius: 14px;
+     }
+
+     .pastsessionstitle {
+         font-size: 16px;
+     }
+
+     .recordinginfo {
+         padding: 1rem;
+     }
+
+     .recordingtitle {
+         font-size: 0.95rem;
+     }
+
+     .playoverlay {
+         width: 46px;
+         height: 46px;
+         font-size: 1.4rem;
+     }
+
+     .videooverlay {
+         padding: 1rem;
+     }
+
+     .videoplayersection {
+         padding: 1.2rem;
+         border-radius: 14px;
+     }
+
+     .videocontainer {
+         margin-bottom: 1.2rem;
+         border-radius: 10px;
+     }
+
+     .videometa {
+         padding: 1rem;
+     }
+
+     .videostatslist {
+         font-size: 0.9rem;
+     }
+
+     .actionbtn {
+         padding: 0.65rem 0.9rem;
+         font-size: 0.9rem;
+     }
+
+     .regprice {
+         font-size: 20px;
+     }
+
+     .regfooter p {
+         font-size: 12px;
+     }
+
+     .sectiontitle {
+         font-size: 1.4rem;
+     }
+
+     .tabicon {
+         width: 22px;
+         height: 22px;
+     }
+
+     .benefittitle {
+         font-size: 1.05rem;
+     }
+
+     .whytitle {
+         font-size: 1.2rem;
+     }
+
+     .modalOverlay {
+    padding: 10px;
+  }
+
+  .modal {
+    width: 100%;
+    height: 95vh;
+    border-radius: 8px;
+
+    padding: 14px;
+  }
+
+  .closeBtn {
+    font-size: 20px;
+    top: 8px;
+    right: 10px;
+  }
+
+  .whyThisWebinarMatters p,
+  .whyThisWebinarMatters li {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .whyThisWebinarMatters ul {
+    padding-left: 0px;
+    margin-bottom: 16px;
+  }
+
+  .whyThisWebinarMatters li {
+    margin-bottom: 8px;
+  }
+
+  .whyThisWebinarMatters .highlight {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+ }
+
+ /* Extra Small Phones <=360px */
+ @media (max-width: 360px) {
+     .trainercard {
+         padding: 10px;
+         gap: 8px;
+     }
+
+     .trainercard .photo {
+         width: 60px;
+         height: 60px;
+     }
+
+     .trainercard h3 {
+         font-size: 15px;
+     }
+
+     .trainercard .title,
+     .trainercard p {
+         font-size: 13px;
+     }
+
+     .maincontent h1 {
+         font-size: 20px;
+         margin-bottom: 8px;
+         line-height: 1.15;
+     }
+
+     .maincontent .description {
+         font-size: 13px;
+         margin-bottom: 16px;
+     }
+
+     .contentsection ul li {
+         padding-left: 18px;
+         font-size: 13px;
+     }
+
+     .contentsection ul li::before {
+         font-size: 13px;
+     }
+
+     .pastsessionstitle {
+         font-size: 15px;
+     }
+
+     .recordingtitle {
+         font-size: 0.9rem;
+     }
+
+     .playoverlay {
+         width: 40px;
+         height: 40px;
+         font-size: 1.2rem;
+     }
+
+     .recordingstats {
+         font-size: 0.75rem;
+     }
+
+     .videoplayersection {
+         padding: 1rem;
+     }
+
+     .backbtn {
+         width: 100%;
+         justify-content: center;
+         font-size: 0.85rem;
+     }
+
+     .videostatslist {
+         flex-direction: column;
+         gap: 0.5rem;
+     }
+
+     .videoactions {
+         flex-direction: column;
+     }
+
+     .actionbtn {
+         width: 100%;
+         font-size: 0.85rem;
+     }
+
+     .audiencetab {
+         font-size: 0.9rem;
+         padding: 0.8rem 1rem;
+     }
+
+     .sectiontitle {
+         font-size: 1.3rem;
+     }
+
+     .learningitem {
+         padding: 1rem;
+     }
+
+     .whycard {
+         padding: 1.5rem 1.2rem;
+     }
+
+     .modal {
+    padding: 12px;
+  }
+
+  .closeBtn {
+    font-size: 18px;
+    top: 6px;
+    right: 8px;
+  }
+
+    .pastrecordingsgrid1 {
+    display: grid;
+    grid-template-columns: 1fr;   /* 🔥 force single column */
+    gap: 1rem;
+
+    width: 100%;                 /* 🔥 prevent shrink */
+    max-width: 100%;
+
+    max-height: 320px;           /* smaller for mobile */
+    overflow-y: auto;
+
+    padding-right: 4px;          /* avoid scrollbar overlap */
+  }
+
+  .recordingcard {
+    width: 100%;                 /* 🔥 important */
+    min-width: 0;                /* 🔥 prevents overflow */
+  }
+
+  .recordingthumbnail {
+    padding-bottom: 56.25%;      /* keep aspect ratio */
+  }
+
+  .recordinginfo {
+    padding: 0.8rem;
+  }
+
+  .recordingtitle {
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .recordingdate {
+    font-size: 0.75rem;
+  }
+
+  .playoverlay {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+ }
