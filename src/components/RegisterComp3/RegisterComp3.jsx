@@ -11,7 +11,7 @@ const RegisterComp3 = ({ webinar, utms }) => {
 
   const [activeVideo, setActiveVideo] = useState(null);
 
-  const [activeTab, setActiveTab] = useState("teachers-content");
+  const [activeTab, setActiveTab] = useState("parents-content");
 
   const [certificate, setCertificate] = useState(null);
 
